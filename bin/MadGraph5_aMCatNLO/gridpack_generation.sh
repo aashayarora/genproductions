@@ -121,16 +121,16 @@ make_gridpack () {
     fi
 
     # CMS Connect runs git status inside its own script.
-    if [ $iscmsconnect -eq 0 ]; then
-      cd $PRODHOME
-      if [ -x "$(command -v git)" ]; then
-        git status
-        echo "Current git revision is:"
-        git rev-parse HEAD
-        git diff | cat
-      fi
-      cd -
-    fi
+    #if [ $iscmsconnect -eq 0 ]; then
+    #  cd $PRODHOME
+    #  if [ -x "$(command -v git)" ]; then
+    #    git status
+    #    echo "Current git revision is:"
+    #    git rev-parse HEAD
+    #    git diff | cat
+    #  fi
+    #  cd -
+    #fi
     
     # where to find the madgraph tarred distribution
     MGBASEDIR=mgbasedir
@@ -230,10 +230,10 @@ make_gridpack () {
       
           echo "set run_mode  1" >> mgconfigscript
           if [ "$queue" == "condor" ]; then
-            echo "set cluster_type cms_condor" >> mgconfigscript
+            echo "set cluster_type condor" >> mgconfigscript
             echo "set cluster_queue None" >> mgconfigscript
           elif [ "$queue" == "condor_spool" ]; then
-            echo "set cluster_type cms_condor_spool" >> mgconfigscript
+            echo "set cluster_type condor_spool" >> mgconfigscript
             echo "set cluster_queue None" >> mgconfigscript
           else
             echo "set cluster_type cms_lsf" >> mgconfigscript
@@ -275,7 +275,7 @@ make_gridpack () {
           #get needed BSM model
           if [[ $model = *[!\ ]* ]]; then
             echo "Loading extra model $model"
-            wget --no-check-certificate https://cms-project-generators.web.cern.ch/cms-project-generators/$model	
+            wget --no-check-certificate http://uaf-10.t2.ucsd.edu/~aaarora/$model
             cd models
             if [[ $model == *".zip"* ]]; then
               unzip ../$model
@@ -355,11 +355,11 @@ make_gridpack () {
        elif [ "$queue" == "condor" ]; then
          echo "cluster_queue = None" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
          echo "run_mode = 1" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
-         echo "cluster_type = cms_condor" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
+         echo "cluster_type = condor" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
        elif [ "$queue" == "condor_spool" ]; then
          echo "cluster_queue = None" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
          echo "run_mode = 1" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
-         echo "cluster_type = cms_condor_spool" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
+         echo "cluster_type = condor_spool" >> ./$MGBASEDIRORIG/input/mg5_configuration.txt
        fi
     
       # Previous settings get erased after
