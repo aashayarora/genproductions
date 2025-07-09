@@ -1,0 +1,7 @@
+import model SM_HEL_UFO_noLightYukawa
+
+define w = w+ w-
+
+generate p p > w z h j j QCD=0
+
+output VBSWZH_4f_LO -nojpeg

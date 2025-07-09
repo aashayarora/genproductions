@@ -1,0 +1,9 @@
+--- a/Template/LO/SubProcesses/makefile
++++ b/Template/LO/SubProcesses/makefile
+@@ -1,5 +1,5 @@
+ include ../../Source/make_opts
+-FFLAGS+= -w
++FFLAGS+= -w -mcmodel=medium
+
+ # Load additional dependencies of the bias module, if present
+ ifeq (,$(wildcard ../bias_dependencies))

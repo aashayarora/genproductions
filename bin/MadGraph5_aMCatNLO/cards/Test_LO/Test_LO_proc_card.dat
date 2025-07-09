@@ -1,0 +1,5 @@
+import model HHVBF_UFO-vbf_hh
+
+generate p p > e+ e- QCD=0
+
+output Test_LO -nojpeg
