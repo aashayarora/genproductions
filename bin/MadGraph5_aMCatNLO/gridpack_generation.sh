@@ -121,16 +121,16 @@ make_gridpack () {
     fi
 
     # CMS Connect runs git status inside its own script.
-    if [ $iscmsconnect -eq 0 ]; then
-      cd $PRODHOME
-      if [ -x "$(command -v git)" ]; then
-        git status
-        echo "Current git revision is:"
-        git rev-parse HEAD
-        git diff | cat
-      fi
-      cd -
-    fi
+    #if [ $iscmsconnect -eq 0 ]; then
+    #  cd $PRODHOME
+    #  if [ -x "$(command -v git)" ]; then
+    #    git status
+    #    echo "Current git revision is:"
+    #    git rev-parse HEAD
+    #    git diff | cat
+    #  fi
+    #  cd -
+    #fi
     
     # where to find the madgraph tarred distribution
     MGBASEDIR=mgbasedir
@@ -275,7 +275,7 @@ make_gridpack () {
           #get needed BSM model
           if [[ $model = *[!\ ]* ]]; then
             echo "Loading extra model $model"
-            wget --no-check-certificate https://cms-project-generators.web.cern.ch/cms-project-generators/$model	
+            wget --no-check-certificate http://uaf-4.t2.ucsd.edu/~aaarora/$model
             cd models
             if [[ $model == *".zip"* ]]; then
               unzip ../$model
