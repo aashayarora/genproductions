@@ -612,7 +612,7 @@ make_gridpack () {
 
       # as of mg29x, it does not generate any event if 'True = gridpack' in the run card
       # generate a few events manually
-      ./run.sh 1000 234567 # nevents seed
+      ./run.sh 5 234567 # nevents seed
       mv events.lhe.gz $WORKDIR/unweighted_events.lhe.gz
 
       # precompile reweighting if necessary
